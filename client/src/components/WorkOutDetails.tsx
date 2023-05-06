@@ -8,7 +8,7 @@ interface Workout{
 }
 
 const WorkOutDetails:FC<Workout> = ({title,reps,load,createdAt,updatedAt}) =>{
-return <div className="">
+return <div className="box">
     <h4>{title}</h4>
     <p><strong>load(kg) :</strong>{load}</p>
     <p><strong>Reps  :</strong>{reps}</p>

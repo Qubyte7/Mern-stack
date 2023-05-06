@@ -10,7 +10,7 @@
   --error:#e7195a;
 }
 body{
-  background-color: #f1f1f1;
+  background-color: #ddd6d6;
   margin: 0;
   font-family: indie;
 }
@@ -35,9 +35,18 @@ header a {
   padding: 20px;
   margin: 0 auto;
 }
-
-
-
+.workouts{
+ 
+}
+.box{
+  margin: 20px 0px;
+  background-color: #f3f1ec;
+  padding-left: 25px;
+  padding-top: 5px;
+}
+.box h4{
+  color: #1aac83;
+}
 
 
 
