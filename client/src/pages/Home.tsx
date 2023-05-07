@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
+import WorkoutForm from "../components/WorkoutForm";
 interface Workout{
     _id:string;
     title:string,
@@ -44,6 +45,7 @@ import WorkOutDetails from '../components/WorkOutDetails'
                 {workouts && workouts.map((workout:any)=>(<WorkOutDetails key={workout._id} title={workout.title} reps={workout.reps} load={workout.load} createdAt={workout.createdAt}/>//the reasin that yousee that we used brackets is beacuse brackets help in Automatic return no nedd to specify the return type
                 ))}
             </div>
+            <WorkoutForm />
         </div>
     )
 }
