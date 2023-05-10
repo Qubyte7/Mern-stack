@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useWorkoutContext } from "../HOOKS/useWorkoutContext"
 import React from "react"
 import axios from "axios"
 
@@ -12,6 +13,7 @@ interface Aworkout{
 
 
 const WorkoutForm  = () =>{
+    const {dispatch} = useWorkoutContext();
     const [title,settitle] = useState('')
     const [load,setload] = useState (0);
     const [reps,setreps] = useState(0)
@@ -26,6 +28,7 @@ const WorkoutForm  = () =>{
     setload(0);
     setreps(0);
     setError(null); 
+    dispatch({type:"CREATE_WORKOUT",payload:response.data})
     }catch(err){
         setError((err as Error).message);
     }

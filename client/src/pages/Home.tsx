@@ -1,20 +1,22 @@
-import { useEffect, useState } from "react"
+import { useEffect,FC} from "react"
 import axios from "axios"
 import WorkoutForm from "../components/WorkoutForm";
-interface Workout{
-    _id:string;
-    title:string,
-    reps:number;
-    load:number;  
-    createdAt:Date;   
-    updatedAt:Date
-}
+import { useWorkoutContext } from "../HOOKS/useWorkoutContext";
+// interface Workout{
+//     _id:string;
+//     title:string,
+//     reps:number;
+//     load:number;  
+//     createdAt:Date;   
+//     updatedAt:Date
+// }
 //components 
 import WorkOutDetails from '../components/WorkOutDetails'
 
 
- const Home = ()=>{
-    const [workouts,setworkouts] = useState<Array<Workout>>([])
+ const Home:FC = ()=>{
+const {workouts,dispatch}=useWorkoutContext()//here we are descruturing the workoutContext
+//   const [workouts,setworkouts] = useState<Array<Workout>>([])
     // useEffect(()=>{
     //     const fetchWorkout = async ()=>{
     //     const response = await fetch('http://localhost:8080/api/workouts')
@@ -30,7 +32,8 @@ import WorkOutDetails from '../components/WorkOutDetails'
     const fetching = async ()=>{
         axios.get('http://localhost:8080/api/workouts')
         .then((response)=>{
-            setworkouts(response.data)
+            dispatch(type:"SET_WORKOUTS",payload:response.data)
+            // setworkouts(response.data)
             console.log(response.data)})
         .catch((err)=>{console.log(err)})
     }
