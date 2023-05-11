@@ -16,7 +16,10 @@ app.use(cors())
 app.use(express.json())//see if any request coming have a body and if it does it passes it to the request Body so we can access it by a request handeler 
 app.use('/api/workouts',workoutRoutes)
 
-
+app.use((err, req, res, next) => {
+    console.log(err.message);
+    next()
+})
 //connect to db
 mongoose.connect(database)
 .then(()=>{

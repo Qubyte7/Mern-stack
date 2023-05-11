@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useWorkoutContext } from "../HOOKS/useWorkoutContext"
 import React from "react"
 import axios from "axios"
+import { workoutsReducer } from "../context/WorkoutContext"
 
 interface Aworkout{
     title:string,
@@ -13,7 +14,7 @@ interface Aworkout{
 
 
 const WorkoutForm  = () =>{
-    const {dispatch} = useWorkoutContext();
+    const { dispatch } = useWorkoutContext();
     const [title,settitle] = useState('')
     const [load,setload] = useState (0);
     const [reps,setreps] = useState(0)
