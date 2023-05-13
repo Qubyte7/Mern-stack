@@ -1,28 +1,33 @@
 import { createContext, useReducer } from "react";
+interface Workout{
+  _id?:any,
+  title?:string,
+  reps?:number;
+  load?:number;  
+  createdAt?:Date;   
+  updatedAt?:Date
+}
 
-export const WorkoutContext = createContext<{workouts: any[],dispatch: React.Dispatch<any>;}>({
-  workouts: [],
-  dispatch: () => null
-});
+export const WorkoutContext = createContext<{workouts: any[]; dispatch: React.Dispatch<any>;}>({workouts: [],dispatch:()=> null,});
 export const workoutsReducer = (state: any, action: any) => {
   switch (action.type) {
     case "SET_WORKOUTS":
-        // console.log("payload", action.payload);
-        
       return { workouts: action.payload }; //Here we are updating thr workouts which was initially null to the workouts object we got from our backend api //we are doing this in home component
     //note that the payload is the object body of what we want to update to mean is the an object of all the workouts
     case "CREATE_WORKOUT":
       return {
         workouts: [action.payload, ...state.workouts], //remember that the three dots ... means that we want to add new thing to an existing array of things
       };
+      case "DELETE_WORKOUT":
+        return{
+          workouts:state.payload.filter((workout:any)=>{workout._id !== action.payload._id})
+        }
     default:
       return state;
   }
 };
 
-export const WorkoutContextProvider: React.FC<{
-  children: React.ReactNode;
-}> = ({ children }) => {
+export const WorkoutContextProvider: React.FC<{children: React.ReactNode;}> = ({ children }) => {
   const [state, dispatch] = useReducer(workoutsReducer, { workouts: [] }); //workouts :null // is said to be the initial state if this State
   // dispatch({type:'SET_WORKOUTS',payload:[{},{}]})
   //the type property describes the state change

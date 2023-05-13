@@ -12,9 +12,6 @@ import { useWorkoutContext } from "../HOOKS/useWorkoutContext";
 // }
 //components
 import WorkOutDetails from "../components/WorkOutDetails";
-
-import { useReducer } from "react";
-import { workoutsReducer } from "../context/WorkoutContext";
 const Home: FC = () => {
     
     const { workouts, dispatch } = useWorkoutContext(); //here we are descruturing the workoutContext

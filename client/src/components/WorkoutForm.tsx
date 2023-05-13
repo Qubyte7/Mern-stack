@@ -3,6 +3,7 @@ import { useWorkoutContext } from "../HOOKS/useWorkoutContext"
 import React from "react"
 import axios from "axios"
 import { workoutsReducer } from "../context/WorkoutContext"
+import { json } from "react-router-dom"
 
 interface Aworkout{
     title:string,
@@ -18,6 +19,7 @@ const WorkoutForm  = () =>{
     const [title,settitle] = useState('')
     const [load,setload] = useState (0);
     const [reps,setreps] = useState(0)
+    const [emptyField,setEmptyField] = useState <String | []>([])
     const [error,setError] = useState<string | null>(null)
     const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) =>{
         e.preventDefault()//this prevent from the reload of the page when a user clicks submit button on the form
@@ -31,7 +33,8 @@ const WorkoutForm  = () =>{
     setError(null); 
     dispatch({type:"CREATE_WORKOUT",payload:response.data})
     }catch(err){
-        setError((err as Error).message);
+         setError((err as Error).message);
+         
     }
    };
     
