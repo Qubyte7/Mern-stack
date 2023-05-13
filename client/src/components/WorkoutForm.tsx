@@ -3,7 +3,7 @@ import { useWorkoutContext } from "../HOOKS/useWorkoutContext"
 import React from "react"
 import axios from "axios"
 import { workoutsReducer } from "../context/WorkoutContext"
-import { json } from "react-router-dom"
+import { json } from "react-router-dom";
 
 interface Aworkout{
     title:string,

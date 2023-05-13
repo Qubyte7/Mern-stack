@@ -67,7 +67,7 @@ const workout = await workoutModel.findOneAndDelete({_id: id})
 if(!workout){
 return res.status(404).json({error:"The Workout you are trying to delete is not available"})
 }
-res.status(200).json(workout+"was deleted Successfully")
+res.status(200).json(workout)
 }
 
 //update a workout

@@ -13,10 +13,9 @@ import { useWorkoutContext } from "../HOOKS/useWorkoutContext";
 //components
 import WorkOutDetails from "../components/WorkOutDetails";
 const Home: FC = () => {
-    
-    const { workouts, dispatch } = useWorkoutContext(); //here we are descruturing the workoutContext
- //workouts :null // is said to be the initial state if this State
-    //   const [workouts,setworkouts] = useState<Array<Workout>>([])
+  const { workouts, dispatch } = useWorkoutContext(); //here we are descruturing the workoutContext
+  //workouts :null // is said to be the initial state if this State
+  //   const [workouts,setworkouts] = useState<Array<Workout>>([])
   // useEffect(()=>{
   //     const fetchWorkout = async ()=>{
   //     const response = await fetch('http://localhost:8080/api/workouts')
@@ -52,6 +51,7 @@ const Home: FC = () => {
         {workouts &&
           workouts.map((workout: any) => (
             <WorkOutDetails
+              _id={workout._id}
               key={workout._id}
               title={workout.title}
               reps={workout.reps}
