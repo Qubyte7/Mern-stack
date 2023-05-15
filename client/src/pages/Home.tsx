@@ -42,7 +42,7 @@ const Home: FC = () => {
   };
   useEffect(() => {
     fetching();
-  }, []);
+  }, [workouts]);
 
   return (
     <div>
