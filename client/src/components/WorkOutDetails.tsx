@@ -1,6 +1,11 @@
-import React, {FC} from "react"
+import  {FC} from "react"
 import { useWorkoutContext } from "../HOOKS/useWorkoutContext";
 import axios from "axios";
+//date fns
+import formatDistanceToNow from "date-fns/formatDistanceToNow";
+
+
+
 interface Workout{
     _id?:any,
     title:string,
@@ -11,7 +16,7 @@ interface Workout{
 }
 
 
-const WorkOutDetails:FC<Workout> = ({_id,title,reps,load,createdAt,updatedAt}) =>{
+const WorkOutDetails:FC<Workout> = ({_id,title,reps,load,createdAt}) =>{
     const { dispatch } = useWorkoutContext();
 
     // const handledelete = async()=>{
@@ -46,8 +51,8 @@ return <div className="box">
     <h4>{title}</h4>
     <p><strong>load(kg) :</strong>{load}</p>
     <p><strong>Reps  :</strong>{reps}</p>
-    <p>{createdAt?.toString()}</p>
-
+    {/* <p>{createdAt?.toString()}</p> */}
+    <p>{createdAt && formatDistanceToNow(new Date(createdAt), { addSuffix: true })}</p>
    <button><span onClick={handledelete}>delete</span> </button>
 </div>
 }
