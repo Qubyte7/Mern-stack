@@ -1,4 +1,4 @@
-import  {FC} from "react"
+import  {FC,useEffect} from "react"
 import { useWorkoutContext } from "../HOOKS/useWorkoutContext";
 import axios from "axios";
 //date fns
@@ -38,6 +38,7 @@ const handledelete = async () =>{
             console.log(response)
             dispatch({type:'DELETE_WORKOUT',payload:response.data});
         }
+        window.location.reload();//this reloads the page after the delete functionhave been successfull
     }
     catch(error){
         console.log(error)

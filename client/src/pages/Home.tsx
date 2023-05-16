@@ -29,12 +29,12 @@ const Home: FC = () => {
 
   //USING AXIOS
   const fetching = async () => {
-    axios
-      .get("http://localhost:8080/api/workouts")
+    axios.get("http://localhost:8080/api/workouts")
       .then((response) => {
         dispatch({ type: "SET_WORKOUTS", payload: response.data });
         // setworkouts(response.data)
         console.log(response.data);
+        console.log("data being fecthed");
       })
       .catch((err) => {
         console.log(err);
@@ -42,7 +42,8 @@ const Home: FC = () => {
   };
   useEffect(() => {
     fetching();
-  }, [workouts,dispatch]);
+  }, []);
+  // [workouts]
 
   return (
     <div>

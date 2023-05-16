@@ -7,7 +7,7 @@ import { json } from "react-router-dom";
 
 interface Aworkout{
     title:string,
-    load:number,
+    load:number|null,
     reps:number,
 }
 
@@ -31,10 +31,11 @@ const WorkoutForm  = () =>{
     setload(0);
     setreps(0);
     setError(null); 
+    setEmptyField([]);
     dispatch({type:"CREATE_WORKOUT",payload:response.data})
     }catch(err){
-         setError((err as Error).message);
-         
+           setError((err as Error).message);
+        //   setEmptyField(json)
     }
    };
     
@@ -43,9 +44,9 @@ const WorkoutForm  = () =>{
         <form action="" onSubmit={handleSubmit}>
         <h3>Add a new Workout</h3>
         <label>Excersize Title</label>
-        <input type="text" onChange={(e)=>settitle(e.target.value)} value={title} />
+        <input type="text" onChange={(e)=>settitle(e.target.value) } value={title} />
         <label>Load(in kg)</label>
-        <input type="number" onChange={(e)=>setload(Number(e.target.value))} value={load} />
+        <input type="number" onChange={(e)=>setload(Number(e.target.value))} value={load}/>
         <label>Reps</label>
         <input type="number" onChange={(e)=>setreps(Number(e.target.value))} value={reps} />
      <button>Add workout</button>
