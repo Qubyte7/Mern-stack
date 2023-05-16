@@ -1,4 +1,4 @@
-
+const bcrypt = require('bcrypt');
 const mongoose =require('mongoose');
 
 
@@ -15,7 +15,20 @@ const userSchema = new Schema({
         required:true,
     }
 })
-
+//static signup method
+//Note:this was used to reference to the model other wise we would use "User" but because at this time there is no user created we have to use this
+userSchema.statics.signup = async (email,password) => {
+        const exist =  await this.findOne({email})//this point or referrs to the model of the user           
+        if(exist){
+            throw Error('Email already in use')
+    }
+    
+    const salt = await bcrypt.genSalt(10);
+    const hash= await bcrypt.hash(password,salt);
+        
+    const user= await this.create({email,password:hash})
+    return user; 
+}
 
 module.exports = mongoose.model('User',userSchema);
 

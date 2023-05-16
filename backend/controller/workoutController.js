@@ -1,5 +1,4 @@
 const workoutModel = require('../models/workoutModel')
-const WorkoutModel = require('../models/workoutModel')
 const mongoose = require('mongoose')
 
 //get all workouts
