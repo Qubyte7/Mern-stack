@@ -17,7 +17,8 @@ const userSchema = new Schema({
 })
 //static signup method
 //Note:this was used to reference to the model other wise we would use "User" but because at this time there is no user created we have to use this
-userSchema.statics.signup = async (email,password) => {
+// and notice that we will use the normal function not an arro function
+userSchema.statics.signup = async function (email,password) {
         const exist =  await this.findOne({email})//this point or referrs to the model of the user           
         if(exist){
             throw Error('Email already in use')
