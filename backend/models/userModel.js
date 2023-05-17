@@ -14,7 +14,8 @@ const userSchema = new Schema({
     password:{
         type:String,
         required:true,
-        
+        minlength:[2,'please is beloow the required number of characters'],
+        maxlength:[200,'please the password exceeds the maximum of 20 characters']
     }
 })
 
@@ -30,22 +31,35 @@ userSchema.statics.signup = async function (email,password) {
    if(!validator.isEmail(email)){
       throw Error('Email is not valid');
    }
-   
 //    if(!validator.isStrongPassword(password)){
 //      throw Error("password not strong enough");
 //    }
-
-        const exist =  await this.findOne({email})//this point or referrs to the model of the user           
-        if(exist){
-            throw Error('Email already in use')
+const exist =  await this.findOne({email})//this point or referrs to the model of the user           
+    if(exist){
+        throw Error('Email already in use')
     }
     
     const salt = await bcrypt.genSalt(10);
     const hash= await bcrypt.hash(password,salt);
-        
     const user= await this.create({email,password:hash})
     return user; 
 }
+//static login 
+userSchema.static.login= async function(email,password){
+    if(!email || !password){
+        throw Error('all fields must be filled')
+       }
+const user = await this.findOne({email});
+    if(!user){
+        throw Error('Incorrect email');
+    }
+const match = await bcrypt.compare(password,user.password);
+    if(!match){
+        throw Error ("incorrect password");
+}
+return user;
+}
+
 
 module.exports = mongoose.model('User',userSchema);
 
