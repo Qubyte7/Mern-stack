@@ -44,8 +44,9 @@ const exist =  await this.findOne({email})//this point or referrs to the model o
     const user= await this.create({email,password:hash})
     return user; 
 }
+
 //static login 
-userSchema.static.login= async function(email,password){
+userSchema.statics.login= async function(email,password){
     if(!email || !password){
         throw Error('all fields must be filled')
        }
