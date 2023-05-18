@@ -2,16 +2,8 @@ import { useEffect, FC } from "react";
 import axios from "axios";
 import WorkoutForm from "../components/WorkoutForm";
 import { useWorkoutContext } from "../HOOKS/useWorkoutContext";
-// interface Workout{
-//     _id:string;
-//     title:string,
-//     reps:number;
-//     load:number;
-//     createdAt:Date;
-//     updatedAt:Date
-// }
-//components
 import WorkOutDetails from "../components/WorkOutDetails";
+
 const Home: FC = () => {
   const { workouts, dispatch } = useWorkoutContext(); //here we are descruturing the workoutContext
   //workouts :null // is said to be the initial state if this State
