@@ -1,12 +1,4 @@
 import { createContext, useReducer } from "react";
-interface Workout{
-  _id?:any,
-  title?:string,
-  reps?:number;
-  load?:number;  
-  createdAt?:Date;   
-  updatedAt?:Date
-}
 
 export const WorkoutContext = createContext<{workouts: any[]; dispatch: React.Dispatch<any>;}>({workouts: [],dispatch:()=> null,});
 export const workoutsReducer = (state: any, action: any) => {

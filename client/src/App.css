@@ -35,9 +35,8 @@ header a {
   padding: 20px;
   margin: 0 auto;
 }
-.workouts{
- 
-}
+
+
 .box{
   margin: 20px 0px;
   background-color: #f3f1ec;
@@ -47,6 +46,21 @@ header a {
 .box h4{
   color: #1aac83;
 }
+nav{
+  display: flex;
+  align-items: center;
+}
+nav a{
+  margin-left: 10px;
+}
+form.signup, form.login{
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 4px;
+}
+
 
 
 
