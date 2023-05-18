@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
 import axios from "axios";
-import { json } from "react-router-dom";
 
 interface User {
   email: string;
@@ -21,8 +20,9 @@ export const useSignup = () => {
         "http://localhost:8080/api/user/signup",
         user
       );
+      console.log(response)
       localStorage.setItem("user", JSON.stringify(response.data));
-      dispatch({ type: "SIGNUP", payload: response.data });
+      dispatch({ type: "LOGIN", payload: response.data });
       setIsloading(false);
       // axios.post("http://localhost:8080/api/user/signup")
       // .then((response)=>{
@@ -36,9 +36,10 @@ export const useSignup = () => {
       //     setIsloading(false);
       //     setError(err)
       // });
-    } catch (err) {
+    } catch (err:any) {
       setIsloading(false);
-      setError((err as Error).message);
+      setError((err).response.data.error);
+      console.log(err)
     }
   };
   return { signup, isloading, error };
