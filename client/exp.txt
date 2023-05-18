@@ -3,7 +3,8 @@
 The React.FormEvent<HTMLFormElement> is a type provided by React to represent a form submission event. It is a generic type that takes a type parameter representing the target element of the event. In this case, the target element is a form element, hence the HTMLFormElement type.
 By using this type in the handleSubmit function's parameter, we are defining that the handleSubmit function is an event handler function that will be triggered when a form submission event occurs. The function will receive the form submission event as a parameter, and we can access the data submitted through the form using this event.
 
-
+------------------------(err as Error)-------------------------------
+The as keyword is used for type assertion in TypeScript, which tells the compiler to treat err as a specific type, in this case, Error. It is used when the type of err cannot be inferred automatically by the compiler, and you want to explicitly specify its type
 
 
 
