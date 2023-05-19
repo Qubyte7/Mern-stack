@@ -24,18 +24,6 @@ export const useSignup = () => {
       localStorage.setItem("user", JSON.stringify(response.data));
       dispatch({ type: "LOGIN", payload: response.data });
       setIsloading(false);
-      // axios.post("http://localhost:8080/api/user/signup")
-      // .then((response)=>{
-      // //storing the user in the local storage so that when the user leaves and came back he have till that token
-      //      localStorage.setItem('user',JSON.stringify(json));//the llocal storage will be called the user //>>>>>;to ee this devtools>application
-      // //upadating then     auth context
-      //     dispatch({type:'LOGIN',payload:response.data});
-      //     setIsloading(false)
-      // })
-      // .catch((err) => {
-      //     setIsloading(false);
-      //     setError(err)
-      // });
     } catch (err:any) {
       setIsloading(false);
       setError((err).response.data.error);

@@ -27,6 +27,7 @@ const getSingleWorkout = async (req, res) => {
 const createWorkout = async (req, res) => {
   const { title, reps, load } = req.body;
   let emptyFields = [];
+  try {
   if (!title) {
     emptyFields.push("title");
   }
@@ -42,10 +43,10 @@ const createWorkout = async (req, res) => {
       .json({ error: "Please in all the fields", emptyFields });
   }
 
-  try {
-    const workout = await WorkoutModel.create({ title, load, reps });
+    const workout = await workoutModel.create({ title, load, reps });
     res.status(200).json(workout);
   } catch (error) {
+    console.log(error.message);
     res.status(400).json({ error: error.message });
   }
 };
