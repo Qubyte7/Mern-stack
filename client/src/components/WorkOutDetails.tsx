@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { useWorkoutContext } from "../HOOKS/useWorkoutContext";
 import axios from "axios";
 //date fns
