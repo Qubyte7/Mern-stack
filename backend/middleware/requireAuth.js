@@ -2,10 +2,10 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/userModel')
 
 const requireAuth = async (req,res,next) =>{
-    //verify authentication
-    //this (authorization) is accessed from the header which is is typically available when a client includes it in an HTTP request to access a protected resource. 
+//verify authentication
+//this (authorization) is accessed from the header which is is typically available when a client includes it in an HTTP request to access a protected resource. 
 //this authorization contain the token ,,,,,blueprint of authorization "Beare sdfksidfhsfs.sdfsdfsdfsdf.sfsdhfsdfs" toke = (sdfksidfhsfs.sdfsdfsdfsdf.sfsdhfsdfs)
-    const {authorization} = req.headers;
+const {authorization} = req.headers;
 if(!authorization){
     return res.status(401).json({error:'Authorization token required'});
 }

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useWorkoutContext } from "../HOOKS/useWorkoutContext";
 import React from "react";
 import axios from "axios";
-
+import { useAuthContext } from "../HOOKS/useAuthContext";
 interface Aworkout {
   title: string;
   load: number | null;
@@ -10,6 +10,7 @@ interface Aworkout {
 }
 
 const WorkoutForm = () => {
+  const {user} = useAuthContext();
   const { dispatch } = useWorkoutContext();
   const [title, settitle] = useState("");
   const [load, setload] = useState(0);
@@ -19,8 +20,14 @@ const WorkoutForm = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); //this prevent from the reload of the page when a user clicks submit button on the form
     const workout: Aworkout = { title, load, reps };
+    const storedUser = localStorage.getItem('user');
+    const user = storedUser ?JSON.parse(storedUser):null;
     try {
-      const response = await axios.post<Aworkout>(
+  if(user && user.token){
+       axios.defaults.headers.common['Authorization']= `Bearer ${user.token}`; 
+      //see the expl... in home
+      }
+       const response = await axios.post<Aworkout>(
         "http://localhost:8080/api/workouts",
         workout
       );

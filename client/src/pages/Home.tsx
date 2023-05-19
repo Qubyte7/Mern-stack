@@ -3,25 +3,22 @@ import axios from "axios";
 import WorkoutForm from "../components/WorkoutForm";
 import { useWorkoutContext } from "../HOOKS/useWorkoutContext";
 import WorkOutDetails from "../components/WorkOutDetails";
+import { useAuthContext } from "../HOOKS/useAuthContext";
 
 const Home: FC = () => {
   const { workouts, dispatch } = useWorkoutContext(); //here we are descruturing the workoutContext
-  //workouts :null // is said to be the initial state if this State
-  //   const [workouts,setworkouts] = useState<Array<Workout>>([])
-  // useEffect(()=>{
-  //     const fetchWorkout = async ()=>{
-  //     const response = await fetch('http://localhost:8080/api/workouts')
-  //      const json = await response.json()
-  //      if(response.ok){
-  //      setworkouts(json)
-  //      }
-  //     }
-  //     fetchWorkout()
-  // },[])
-
+  const { user } = useAuthContext();
   //USING AXIOS
-  const fetching = async () => {
-    axios.get("http://localhost:8080/api/workouts")
+  const fetchingWorkouts = async () => {
+    //set the default authorization header
+    const storedUser = localStorage.getItem('user');
+    const user = storedUser? JSON.parse(storedUser):null;
+    if(user && user.token){
+    axios.defaults.headers.common['Authorization']= `Bearer ${user.token}`; 
+    //are specifying that every outgoing Axios request should include this header with the provided value. In this case, the value is Bearer ${user.token}, where user.token is the token used for authentication or authorization.
+  }
+    axios
+      .get("http://localhost:8080/api/workouts")
       .then((response) => {
         dispatch({ type: "SET_WORKOUTS", payload: response.data });
         // setworkouts(response.data)
@@ -33,9 +30,10 @@ const Home: FC = () => {
       });
   };
   useEffect(() => {
-    fetching();
+    if (user) {
+      fetchingWorkouts();
+    }
   }, []);
-  // [workouts]
 
   return (
     <div>
