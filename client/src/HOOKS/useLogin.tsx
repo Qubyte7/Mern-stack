@@ -23,9 +23,10 @@ export const useLogin = () => {
       localStorage.setItem("user", JSON.stringify(response.data));
       dispatch({ type: "LOGIN", payload: response.data });
       setIsloading(false);
-    } catch (err) {
+    } catch (err:any) {
+      console.log(err);
       setIsloading(false);
-      setError((err as Error).message);
+      setError(err.response?.data?.error);
     }
   };
   return { login, isloading, error };

@@ -38,9 +38,9 @@ const WorkoutForm = () => {
       setError(null);
       setEmptyField([]);
       dispatch({ type: "CREATE_WORKOUT", payload: response.data });
-    } catch (err) {
+    } catch (err:any) {
       // console.log('umva mwana ufite error');
-      setError((err as Error).message);
+      setError(err.response?.data?.error);
       //   setEmptyField(json)
     }
   };
