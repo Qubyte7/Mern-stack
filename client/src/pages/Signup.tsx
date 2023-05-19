@@ -22,6 +22,7 @@ const Signup = () => {
         }}
         value={email}
       />
+      <br />
       <label>Password:</label>
       <input
         type="password"
@@ -30,7 +31,7 @@ const Signup = () => {
         }}
         value={password}
       />
-      <button disabled={isloading}>Sign Up</button>
+      <button  style={{ backgroundColor: '#1aac83', borderRadius: '10px',borderColor: 'white',color:'white' }} disabled={isloading}>Sign Up</button>
       {error && <div className="error">{error}</div>}
     </form>
   );

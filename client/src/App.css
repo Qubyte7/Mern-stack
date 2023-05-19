@@ -70,7 +70,11 @@ form.signup, form.login{
   padding: 20px;
   background: white;
   border-radius: 4px;
+  display: flex;
+  flex-direction: column;
 }
+
+
 
 
 
